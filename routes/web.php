@@ -15,4 +15,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::post('/signup', [
+    'uses' => 'UserController@postSignUp',
+    'as' => 'user.signup'
+]);
+
+Route::post('/signin', [
+    'uses' => 'UserController@postSignIn',
+    'as' => 'user.signin'
+]);
+
+
+Route::get('/dashboard', 'UserController@getDashboard')->name('dashboard')->middleware('guest');
+
+
+
+
